@@ -22,29 +22,36 @@ public class StatsService {
 
 
     public long findMaxMonth(long[] incomes) {
-        long current_max_index = 0;
-        long index = 0;
+        long current_max_index;
         long current_max = incomes[0];
+        long index = 0;
+
         for (long income : incomes)
-            if (income > 0)
-            index += 1;
-        for (long income : incomes)
-            if (current_max < income) {
-                current_max_index = index;
-            }
-        return current_max_index;
+            if (current_max <= income) {
+                current_max = income;
+                index = 0;
+            } else index += 1;
+            current_max_index = incomes.length - index;
+
+
+            return current_max_index;
     }
 
 
     public long findMinMonth(long[] incomes) {
-        long monthsCounter = 0;
+        long current_min_index;
         long current_min = incomes[0];
-        long index = 1;
+        long index = 0;
+
         for (long income : incomes)
-            if (current_min > income)
-                monthsCounter = incomes.length;
-        index = index + 1;
-        return monthsCounter;
+            if (current_min >= income) {
+                current_min = income;
+                index = 0;
+            } else index += 1;
+        current_min_index = incomes.length - index;
+
+
+        return current_min_index;
     }
 
     public long underAverageSales(long[] incomes) {
