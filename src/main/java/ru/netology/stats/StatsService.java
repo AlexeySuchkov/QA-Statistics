@@ -11,10 +11,8 @@ public class StatsService {
 
     public long averageSales(long[] incomes) {
         long monthsCount = incomes.length;
-        long sumSales = 0;
-
-        for (long income : incomes)
-            sumSales += income;
+        StatsService service = new StatsService();
+        long sumSales = service.sumAllMonths(incomes);
         long average;
         average = sumSales / monthsCount;
         return average;
@@ -55,14 +53,9 @@ public class StatsService {
     }
 
     public long underAverageSales(long[] incomes) {
-        long monthsCount = incomes.length;
         long monthsCounter = 0;
-        long sumSales = 0;
-
-        for (long income : incomes)
-            sumSales += income;
-        long average;
-        average = sumSales / monthsCount;
+        StatsService service = new StatsService();
+        long average = service.averageSales(incomes);
         for (long income : incomes)
             if (income < average) {
                 monthsCounter += 1;
@@ -72,14 +65,9 @@ public class StatsService {
     }
 
     public long aboveAverageSales(long[] incomes) {
-        long monthsCount = incomes.length;
         long monthsCounter = 0;
-        long sumSales = 0;
-
-        for (long income : incomes)
-            sumSales += income;
-        long average;
-        average = sumSales / monthsCount;
+        StatsService service = new StatsService();
+        long average = service.averageSales(incomes);
         for (long income : incomes)
             if (income > average) {
                 monthsCounter += 1;
